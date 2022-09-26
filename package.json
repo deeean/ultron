@@ -1,0 +1,57 @@
+{
+  "name": "ultron",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "watch": {
+    "build-rs": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "rs",
+      "quiet": true
+    },
+    "run-ts": {
+      "patterns": [
+        "example",
+        "*.node"
+      ],
+      "extensions": "ts",
+      "quiet": true
+    }
+  },
+  "scripts": {
+    "dev": "npm-run-all -p build-rs:watch run-ts:watch",
+    "prepublishOnly": "napi prepublish -t npm",
+    "artifacts": "napi artifacts",
+    "run-ts": "ts-node-dev example/main.ts",
+    "run-ts:watch": "npm-watch run-ts",
+    "build-rs": "napi build --platform --release",
+    "build-rs:watch": "npm-watch build-rs",
+    "test": "ava",
+    "version": "napi version"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.11.4",
+    "ava": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "npm-watch": "^0.11.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.3"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "napi": {
+    "name": "ultron",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "x86_64-pc-windows-msvc"
+      ]
+    }
+  }
+}

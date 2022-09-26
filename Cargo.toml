@@ -1,0 +1,25 @@
+[package]
+edition = "2021"
+name = "ultron"
+version = "0.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+futures = "0.3.24"
+napi = { version = "2.9.1", features = ["tokio_rt"] }
+napi-derive = "2.9.1"
+image = "0.24.3"
+tokio = { version = "1.21.1", features = ["full"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+core-graphics = "0.22.3"
+core-foundation = "0.9.3"
+foreign-types = "0.3.2"
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+[profile.release]
+lto = true
