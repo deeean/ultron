@@ -11,7 +11,7 @@ import * as ultron from 'ultron';
 
 async function main() {
   const target1 = await ultron.readImageData('./target1.png');
-    const target2 = await ultron.readImageData('./target2.png');
+  const target2 = await ultron.readImageData('./target2.png');
   
   const source = ultron.takeScreenshot(0, 0, 500, 500);
   
